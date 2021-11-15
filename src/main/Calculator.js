@@ -1,30 +1,52 @@
-import React,{Component, useState}  from 'react'
+import React,{Component}  from 'react'
 import './Calculator.css'
 import Button from '../componets/Button'
 import Display from '../componets/Display'
 
-    const stateInitial ={
 
-        displayValue : 10,
-        clearDisplay : false,
-        operation : null,
-        values :[0,0],
-        current : 0 ,
 
-    }
+const stateInitial ={
 
+    displayValue :'0',
+    clearDisplay : false,
+    operation : null,
+    values :[0, 0],
+    currentValue :0,
+
+}
 export default class Calculator extends Component {
     
-    staffffte = {...stateInitial}
+     state = {...stateInitial}
+    
+    constructor(props){
 
-    addDigit(techs){
+        super(props)
+
+        this.clearMemory = this.clearMemory.bind(this)
+        this.addOperator = this.addOperator.bind(this)
+        this.addDigit = this.addDigit.bind(this)
+
+    } 
+
+    addDigit(n){
+
+        if (n === '.' && this.state.displayValue.includes('.')) {
+            return
+        }
+
+        const clearDisplay = this.state.displayValue === '0'
+            || this.state.clearDisplay
+        const currentValue = clearDisplay ? '' : this.state.displayValue
+        const displayValue = currentValue + n
+        this.setState({ displayValue, clearDisplay: false })
 
 
     }
 
-    addOperator(operator){
-
-        console.log(operator)
+    addOperator(operation){ 
+       
+    
+    
     }
 
 
@@ -34,10 +56,10 @@ export default class Calculator extends Component {
 
     }
     render(){
-
+   
         return (
             <div className="calculator">
-               <Display  value ={this.staffffte.displayValue}/> 
+               <Display value={this.state.displayValue} />
               <Button label ="AC"click ={this.clearMemory} triple/>
               <Button label ="/" click ={this.addOperator} operation/>
               <Button label ="7" click ={this.addDigit}/>
