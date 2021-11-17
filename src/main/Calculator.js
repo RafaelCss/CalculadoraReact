@@ -64,6 +64,10 @@ export default class Calculator extends Component {
              const values = [...this.state.values]
            // eslint-disable-next-line no-unused-vars
             try {   
+                if (isNaN(values[0]) || !isFinite(values[0])) {
+                    this.clearMemory()
+                return
+                }
                 values[0] = eval(`${values[0]} ${currentOperation} ${values[1]} `)
 
             }catch (e){
