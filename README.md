@@ -8,6 +8,6 @@ Criando o Projeto React.Js
 
 ## Para instalação
 
-. cd calculadora
-. npm install
-. npm start
+* cd calculadora
+* npm install
+* npm start
